@@ -1,19 +1,41 @@
-﻿//Напишите программу, которая принимает на вход число и проверяет, кратно ли оно одновременно 7 и 23. (ответ 161)
+﻿//Напишите программу, которая принимает на вход координаты точки (X и Y), 
+//причём X ≠ 0 и Y ≠ 0 и выдаёт номер координатной четверти плоскости, в которой находится эта точка.
+//Если обе координаты (x и y) положительны - 1 четверть.
+//Если координата x отрицательна, а координата y положительна - 2 четверть.
+//Если обе координаты отрицательны - 3 четверть.
+//Если координата x положительна, а координата y отрицательна - 4 четверть.
 
 Console.Clear();
 
-Console.Write("Enter your number - ");
-string strNum = Console.ReadLine();
-int.TryParse(strNum, out int Num);
+Console.Write("Enter first number - ");
+string strFirstNum = Console.ReadLine();
+int.TryParse(strFirstNum, out int FirstNum);
+Console.Write("Enter second number - ");
+string strSecondNum = Console.ReadLine();
+int.TryParse(strSecondNum, out int SecondNum);
 
-int FirstCheck = Num % 7;
-int SecondCheck = Num % 23;
-
-if (FirstCheck == 0 && SecondCheck == 0)
+if (FirstNum == 0 || SecondNum == 0)
 {
-    Console.WriteLine($"YES, Your number `{strNum}` is a multiple of both 7 and 23");
+    Console.WriteLine($"`{strFirstNum}` or `{strSecondNum}` must not be zero");
+    return;
 }
-else
+
+else if (FirstNum > 0 && SecondNum > 0)
 {
-    Console.WriteLine($"NO, Your number `{strNum}` is not a multiple of both 7 and 23");
+    Console.WriteLine("Your point is at 1 quarter");
+}
+
+else if (FirstNum < 0 && SecondNum > 0)
+{
+    Console.WriteLine("Your point is at 2 quarter");
+}
+
+else if (FirstNum < 0 && SecondNum < 0)
+{
+    Console.WriteLine("Your point is at 3 quarter");
+}
+
+else if (FirstNum > 0 && SecondNum < 0)
+{
+    Console.WriteLine("Your point is at 4 quarter");
 }
