@@ -1,41 +1,37 @@
-﻿//Напишите программу, которая принимает на вход координаты точки (X и Y), 
-//причём X ≠ 0 и Y ≠ 0 и выдаёт номер координатной четверти плоскости, в которой находится эта точка.
-//Если обе координаты (x и y) положительны - 1 четверть.
-//Если координата x отрицательна, а координата y положительна - 2 четверть.
-//Если обе координаты отрицательны - 3 четверть.
-//Если координата x положительна, а координата y отрицательна - 4 четверть.
+﻿//Напишите программу, которая принимает на вход целое число из отрезка [10, 99] 
+//и показывает наибольшую цифру числа.
+//40 ->  4; 96 -> 9; 72 -> 7
 
 Console.Clear();
 
-Console.Write("Enter first number - ");
-string strFirstNum = Console.ReadLine();
-int.TryParse(strFirstNum, out int FirstNum);
-Console.Write("Enter second number - ");
-string strSecondNum = Console.ReadLine();
-int.TryParse(strSecondNum, out int SecondNum);
+Console.Write("Enter your number [10-99] - ");
+string strNum = Console.ReadLine();
+int.TryParse(strNum, out int Num);
 
-if (FirstNum == 0 || SecondNum == 0)
+if (Num < 10 || Num > 99)
 {
-    Console.WriteLine($"`{strFirstNum}` or `{strSecondNum}` must not be zero");
-    return;
+    Console.WriteLine("It is not correct !!! `10-99`");
 }
 
-else if (FirstNum > 0 && SecondNum > 0)
+else
 {
-    Console.WriteLine("Your point is at 1 quarter");
+    int[] Array = new int[2];
+    for (int i = 1; i >= 0; i--)
+    {
+        Array[i] = Num % 10;
+        Num /= 10; // can use "Num = Num / 10"
+    }
+
+    int FirstNum = Array[0];
+    int SecondNum = Array[1];
+
+    if (FirstNum >= SecondNum)
+    {
+        Console.WriteLine($"Larger number `{FirstNum}` in digit `{strNum}`");
+    }
+    else
+    {
+        Console.WriteLine($"Larger number `{SecondNum}` in digit `{strNum}`");
+    }
 }
 
-else if (FirstNum < 0 && SecondNum > 0)
-{
-    Console.WriteLine("Your point is at 2 quarter");
-}
-
-else if (FirstNum < 0 && SecondNum < 0)
-{
-    Console.WriteLine("Your point is at 3 quarter");
-}
-
-else if (FirstNum > 0 && SecondNum < 0)
-{
-    Console.WriteLine("Your point is at 4 quarter");
-}
